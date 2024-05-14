@@ -1,0 +1,24 @@
+(getprop("ro.product.device") == "A109" || getprop("ro.build.product") == "A109") || abort("This package is for \"A109\" devices
+this is a \"" + getprop("ro.product.device") + "\".");
+ui_print("============================================");
+ui_print("|      Custom Kernel for Micromax A109     |");
+ui_print("|       Based on android_kernel_mt6589     |");
+ui_print("|        Compiled by sounddrill31          |");
+ui_print("============================================");
+show_progress(0.200000, 10);
+mount("ext4", "EMMC", "/emmc@android", "/system");
+package_extract_dir("system", "/system");
+set_perm_recursive(0, 0, 0755, 0644, "/system/lib/modules");
+set_perm_recursive(0, 0, 0777, 0777, "/system/etc/init.d");
+unmount("/system");
+package_extract_file("boot.img", "/dev/bootimg");
+show_progress(0.100000, 0);
+unmount("/system");
+ui_print("");
+ui_print("");
+ui_print("================================================");
+ui_print("|           Installed Suceessfully             |");
+ui_print("|                                              |");
+ui_print("|                Reboot Now                    |");
+ui_print("|            No need to wipe data              |");
+ui_print("================================================");
